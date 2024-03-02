@@ -17,7 +17,7 @@ import { RootState } from "../store/store";
 export const Api = createApi({
   reducerPath: "userApi",
   baseQuery: axiosBaseQuery({
-    baseUrl: "/api",
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   tagTypes: ["Files"],
   endpoints: (build) => ({
