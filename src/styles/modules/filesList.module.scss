@@ -1,0 +1,15 @@
+.title {
+  margin-bottom: 40px;
+}
+
+.inner {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(calc(200px), 1fr));
+  justify-content: space-between;
+}
+.count {
+  font-style: 30px;
+  margin-bottom: 30px;
+}

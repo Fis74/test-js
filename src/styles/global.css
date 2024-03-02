@@ -1,0 +1,76 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  --purple: #646cff;
+  --blue: #3c44db;
+  --black: #000;
+  --white: #fff;
+  --gray: #4e4d4da9;
+  color: var(--black);
+  background-color: var(--white);
+  height: 100%;
+  width: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  min-width: 360px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+a {
+  text-decoration: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 150%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 150%;
+  margin: 0;
+  padding: 0;
+}
+.loader {
+  margin: 0 auto;
+  width: 55px;
+  height: 55px;
+  border: 5px solid var(--purple);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+  justify-content: center;
+  grid-column: span 2;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

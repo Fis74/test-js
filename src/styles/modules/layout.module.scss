@@ -1,0 +1,20 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  box-sizing: border-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: flex;
+  overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1230px;
+  height: 100%;
+  width: 100%;
+}

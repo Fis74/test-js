@@ -1,0 +1,37 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  font-size: 30px;
+  color: rgb(81, 81, 179);
+}
+
+.button {
+  font-size: 18px;
+  padding-left: 40px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  &:hover {
+    color: rgb(76, 76, 187);
+  }
+}
