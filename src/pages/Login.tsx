@@ -10,7 +10,6 @@ import { useLoginMutation } from "../services/Api";
 import { useAppSelector } from "../hooks/hooks";
 
 interface MyFormValues {
-  name: string;
   email: string;
   password: string;
 }
@@ -20,13 +19,11 @@ const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loginUser, { isLoading, isError, isSuccess }] = useLoginMutation();
-  const initialValues: MyFormValues = { name: "", email: "", password: "" };
+  const initialValues: MyFormValues = { email: "", password: "" };
   const SignupSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, "Минимум 2 буквы")
-      .max(50, "Максимум 50 букв")
-      .required("Введите имя пользвотеля"),
-    email: Yup.string().email("Неверный email").required("Введите email"),
+    email: Yup.string()
+      .matches(/[a-z0-9]+@[a-z]+\.[a-z]/, "Неверный email")
+      .required("Введите email"),
     password: Yup.string()
       .min(2, "Минимум 2 буквы")
       .max(50, "Максимум 50 букв")
@@ -43,8 +40,8 @@ const Login = () => {
     }
   }, [isSuccess, user]);
 
-  const onSubmit = ({ name, password, email }: MyFormValues) => {
-    loginUser({ name, password, email });
+  const onSubmit = ({ password, email }: MyFormValues) => {
+    loginUser({ password, email });
   };
 
   return (
@@ -57,18 +54,6 @@ const Login = () => {
         <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={onSubmit}>
           {({ errors, touched }) => (
             <Form className={getClasses([styles.form])}>
-              <label htmlFor="name">Name*</label>
-              <Field
-                id="name"
-                type="text"
-                name="name"
-                className={getClasses([
-                  styles.input,
-                  touched.name && errors.name && styles.novalid,
-                ])}
-              />
-              <ErrorMessage component="div" name="name" className={getClasses([styles.error])} />
-
               <label htmlFor="email">Email*</label>
               <Field
                 id="email"

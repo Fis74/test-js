@@ -25,7 +25,9 @@ const Register = () => {
       .min(2, "Минимум 2 буквы")
       .max(50, "Максимум 50 букв")
       .required("Введите имя пользвотеля"),
-    email: Yup.string().email("Неверный email").required("Введите email"),
+    email: Yup.string()
+      .matches(/[a-z0-9]+@[a-z]+\.[a-z]/, "Неверный email")
+      .required("Введите email"),
     password: Yup.string()
       .min(2, "Минимум 2 буквы")
       .max(50, "Максимум 50 букв")
@@ -51,9 +53,7 @@ const Register = () => {
     <div className={getClasses([styles.inner])}>
       <div className={getClasses([styles.login])}>
         <h1 className={getClasses([styles.title])}>Регистрация</h1>
-        {isError && (
-          <span className={getClasses([styles.formerror])}>Неверный логин или пароль</span>
-        )}
+        {isError && <span className={getClasses([styles.formerror])}>Ошибка при регистрации</span>}
         <Formik initialValues={initialValues} validationSchema={SignupSchema} onSubmit={onSubmit}>
           {({ errors, touched }) => (
             <Form className={getClasses([styles.form])}>

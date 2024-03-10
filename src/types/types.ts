@@ -1,7 +1,6 @@
 import { GenericAbortSignal } from "axios";
 
 export type LoginData = {
-  name: string;
   email: string;
   password: string;
 };

@@ -22,12 +22,11 @@ export const Api = createApi({
   tagTypes: ["Files"],
   endpoints: (build) => ({
     login: build.mutation<LoginResult, LoginData>({
-      async queryFn({ name, email, password }, _queryApi, _extraOptions, fetch) {
+      async queryFn({ email, password }, _queryApi, _extraOptions, fetch) {
         const result = await fetch({
           url: "/login",
           method: "POST",
           data: {
-            name,
             email,
             password,
           },
@@ -187,7 +186,7 @@ export const Api = createApi({
         return { data: typed };
       },
     }),
-    linkFile: build.mutation<string, string>({
+    linkFile: build.query<string, string>({
       async queryFn(id, _queryApi, _extraOptions, fetch) {
         const { user } = (_queryApi.getState() as RootState).userReducer;
         const result = await fetch({
@@ -221,5 +220,5 @@ export const {
   useUploadItemMutation,
   useDeleteItemMutation,
   useDownloadFileMutation,
-  useLinkFileMutation,
+  useLinkFileQuery,
 } = Api;
