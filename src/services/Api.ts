@@ -221,4 +221,5 @@ export const {
   useDeleteItemMutation,
   useDownloadFileMutation,
   useLinkFileQuery,
+  useLazyLinkFileQuery,
 } = Api;

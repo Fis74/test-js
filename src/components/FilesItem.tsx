@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { formatRelative, subDays } from "date-fns";
 import { ru } from "date-fns/locale";
 import { Files } from "../types/types";
@@ -6,7 +6,11 @@ import styles from "../styles/modules/filesItem.module.scss";
 import { getClasses } from "../utils/getClasses";
 import { MdDelete } from "react-icons/md";
 import { CgSoftwareDownload } from "react-icons/cg";
-import { useDeleteItemMutation, useDownloadFileMutation, useLinkFileQuery } from "../services/Api";
+import {
+  useDeleteItemMutation,
+  useDownloadFileMutation,
+  useLazyLinkFileQuery,
+} from "../services/Api";
 import { IoMdDocument } from "react-icons/io";
 interface FllesItem {
   file: Files;
@@ -16,7 +20,13 @@ const FilesItem: FC<FllesItem> = ({ file }) => {
   const [hoverItem, setHoverItem] = useState<boolean>(false);
   const [deleteItem, { isLoading }] = useDeleteItemMutation();
   const [downloadItem, { isLoading: isLoadingDownload }] = useDownloadFileMutation();
-  const { data: linkData, isLoading: LinkLoading } = useLinkFileQuery(file.id);
+  const [getImg, { data: linkData, isLoading: LinkLoading }] = useLazyLinkFileQuery();
+
+  useEffect(() => {
+    if (file.id && file.mimeType.includes("image")) {
+      getImg(file.id);
+    }
+  }, []);
 
   const handleRemove = (id: string) => {
     deleteItem(id);
